@@ -87,32 +87,38 @@
 	log('functions loading');
 	//log(functionsDir);
 
+	/*
 	if (typeof window === 'undefined')
 	{
 	  log('loading node-mode');
 
 	  var dir = __dirname + '/lib';
 	  log(dir);
-	  var files = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"fs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).readdirSync(dir);
+	  var files = require('fs').readdirSync(dir);
 	  log(files);
 
 	  files.map(function(file)
 	  {
 	    var moduleName = file.split('.')[0];
 	    objTemplate[moduleName] =
-	      __webpack_require__(2)(""dir + '/' + moduleName);
+	      require(dir + '/' + moduleName);
 
 	    log(moduleName + ' loaded');
 	  });
 
 
 	}
-	else
-	{
-	  log('loading timeline webpack-mode');
-	  //  objTemplate = require('./loadModulesFactoryBrowserify')(objTemplate);
-	}
+	*/
+	var dir = __dirname + '/lib';
 
+	['appear','compute','map','take','value']
+	   .map(function(moduleName)
+	    {
+	      objTemplate[moduleName] =
+	      __webpack_require__(2)(""dir + '/' + moduleName);
+
+	      log(moduleName + ' loaded');
+	    });
 
 
 	//=======================
