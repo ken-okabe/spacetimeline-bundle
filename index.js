@@ -1,1 +1,1 @@
-var ___ = require('spacetimeline');
+window.___ = require('spacetimeline');
